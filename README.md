@@ -1,2 +1,2 @@
 # Python_Projects
-This simple python project could provide you with a band name.
+Here are all the projects that I created while learning python in 100 days.
