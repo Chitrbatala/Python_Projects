@@ -1,0 +1,52 @@
+# Define the alphabet as a list of lowercase letters
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+# Define a function to perform the Caesar cipher encryption or decryption
+def caesar(start_text, shift_amount, cipher_direction):
+  end_text = ""
+  # If decrypting, convert the shift amount to negative
+  if cipher_direction == "decode":
+    shift_amount *= -1
+  # Loop through each character in the start text
+  for char in start_text:
+    # Check if the character is in the alphabet
+    if char in alphabet:
+      # Find the position of the character in the alphabet
+      position = alphabet.index(char)
+      # Calculate the new position after shifting
+      new_position = position + shift_amount
+      # Append the shifted character to the end text
+      end_text += alphabet[new_position]
+    else:
+      # If the character is not in the alphabet, leave it unchanged
+      end_text += char
+  # Print the result
+  print(f"Here's the {cipher_direction}d result: {end_text}")
+
+# Import the logo from the art module
+from art import logo
+print(logo)
+
+# Initialize a flag to control the loop
+should_end = False
+# Start a loop to keep asking for input until the user decides to end
+while not should_end:
+  # Ask the user whether to encode or decode
+  direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+  # Ask the user for the message
+  text = input("Type your message:\n").lower()
+  # Ask the user for the shift number
+  shift = int(input("Type the shift number:\n"))
+
+  # Ensure the shift value is within the range of the alphabet
+  shift = shift % 26
+
+  # Call the caesar function with the user input
+  caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
+
+  # Ask the user if they want to restart the program
+  restart = input("Type 'yes' if you want to go again. Otherwise type 'no'.\n")
+  # If the user does not want to restart, set the flag to end the loop
+  if restart == "no":
+    should_end = True
+    print("Goodbye")
