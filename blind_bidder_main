@@ -1,0 +1,30 @@
+from replit import clear  # Importing clear function from replit module
+from art import logo  # Importing logo from art module
+
+print(logo)  # Printing the logo
+
+bids = {}  # Dictionary to store bids
+bidding_finished = False  # Flag to indicate if bidding is finished
+
+def find_highest_bidder(bidding_record):
+  # Function to find the highest bidder from the bidding record
+  highest_bid = 0  # Variable to store the highest bid
+  winner = ""  # Variable to store the winner
+  for bidder in bidding_record:  # Looping through each bidder in the bidding record
+    bid_amount = bidding_record[bidder]  # Getting the bid amount for the current bidder
+    if bid_amount > highest_bid:  # If the bid amount is greater than the current highest bid
+      highest_bid = bid_amount  # Update the highest bid
+      winner = bidder  # Update the winner
+  print(f"The winner is {winner} with a bid of ${highest_bid}")  # Print the winner and their bid
+
+# Main bidding loop
+while not bidding_finished:
+  name = input("What is your name?: ")  # Asking for bidder's name
+  price = int(input("What is your bid?: $"))  # Asking for bid amount
+  bids[name] = price  # Storing the bid in the bids dictionary with bidder's name as key
+  should_continue = input("Are there any other bidders? Type 'yes' or 'no'.\n")  # Asking if there are more bidders
+  if should_continue == "no":  # If there are no more bidders
+    bidding_finished = True  # Set bidding_finished flag to True
+    find_highest_bidder(bids)  # Call function to find the highest bidder
+  elif should_continue == "yes":  # If there are more bidders
+    clear()  # Clearing the console for the next bidder
